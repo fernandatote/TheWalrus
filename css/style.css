@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,900|Source+Sans+Pro');
+
+body {
+  font-size: 14px;
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* to not show the part missing from main */
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* TOP HEADER =====================*/
+header.masthead {
+  /* to fix header on top */
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  background-color: white;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px lightgray;
+  padding: 0;
+  transform: all .5s ease-in-out;
+  height: 50px;
+  line-height: 50px;
+}
+
+header.masthead button.nav-button {
+  border: none;
+  background-color: white;
+  flex: 1 0 20px;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-transform: uppercase;
+}
+
+header.masthead button#share-button {
+  flex: 2 0 40px;
+  text-align: right;
+}
+
+header.masthead button span {
+  display: none; /* dont display nav text on small screen*/
+}
+
+header.masthead  h1 {
+  flex: 2 1 150px;
+  text-align: center;
+  margin: 0;
+  font-size: 1.3em;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* SLIDE MENUS ======================================*/
+
+/* SEARCH*/
+.search {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  /* settings for drop down movement */
+  transition: .5s ease-in-out;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  z-index: 2;
+  transform: translateY(-100%);
+}
+
+body.search-active .search {
+  transform: translateY(0);
+}
+
+.search h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 5em;
+  margin: 0;
+}
+
+.search input {
+  font-size: 2em;
+  display: block;
+  width: 300px;
+  margin: 20px auto;
+  padding-left: 5px;
+}
+
+.search input, .search button {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  background-color: #232323;
+  border: 2px solid white;
+  color: white;
+}
+
+.search button {
+  padding: 0 15px;
+  margin: 0 5px;
+}
+
+/* MENU */
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.menu li {
+  height: 30px;
+  line-height: 30px;
+  border-top: 1px solid black;
+  border-left: 3px solid white;
+}
+
+.menu li:hover {
+  border-left: 3px solid red;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: black;
+  padding-left: 5px;
+  display: block;
+}
+
+.menu li.close-menu {
+  font-size: 1.2em;
+  padding-left: 5px;
+}
+
+/* MENU MAIN */
+.menu-main {
+  height: 100%;
+  width: 0; /* initial size to not show */
+  position: fixed;
+  z-index: 1; /* stay on same index level */
+  top: 0;
+  left: 0; /* left side */
+  background-color:white;
+  overflow-x: hidden; /* to not show horizontal scroll */
+  overflow-y: auto; /* show scroll bar if necessary */
+  margin-top: 51px; /* show below header */
+  transition: .5s ease-in-out;
+}
+
+/*settings to show menu-main on left side */
+body.menu-main-active .menu-main {
+  width: 250px; /*increase width to appear */
+}
+
+/*settings to move main content to right side of menu-main */
+body.menu-main-active main, body.menu-main-active footer {
+  margin-left: 255px;
+}
+
+/* MENU SOCIAL */
+.menu-social {
+  height: 100%;
+  width: 0; /* initial size to not show */
+  position: fixed;
+  z-index: 1; /* stay on same index level */
+  top: 0;
+  right: 0; /* right side */
+  background-color:white;
+  margin-top: 51px; /* show below header */
+  transition: .5s ease-in-out;
+  overflow-x: hidden; /* to not show horizontal scroll */
+  overflow-y: auto; /* show scroll bar if necessary */
+}
+
+body.menu-social-active .menu-social {
+  width: 250px; /* increase width to appear */
+}
+
+/*settings to move main content to left side of menu-social */
+body.menu-social-active main, body.menu-social-active footer {
+  margin-right: 255px;
+}
+
+/* BOTH MENUS OPEN === */
+body.menu-main-active.menu-social-active main, body.menu-main-active.menu-social-active footer  {
+  margin-left: 255px;
+  margin-right: 255px;
+
+}
+
+/* ARTICLES ====================================== */
+main { /*IF SCREEN IS SMALL MOVE MAIN TO THE SIDE 100% WHEN MENU OPENS */
+  width: 100%;
+  position: relative;
+  margin: 0;
+  right: 0; /* only way I was able to make the main move left - with margin didnt work */
+  left: 0; /* only way I was able to make the main move right - with margin didnt work */
+  margin-top: 52px; /* to start below header */
+  transition: all .5s ease-in-out;
+  overflow:hidden;
+}
+
+.article-header-wrap {
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 15px;
+}
+
+.article-header-wrap h1 {
+  font-size: 3em;
+  font-weight: 400;
+}
+
+.article-header-wrap .article-lede {
+  font-size: 1.4em;
+}
+
+.article-header-wrap .article-author, .article-header-wrap .article-illustrator {
+  font-family: 'Source Sans Pro', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.article-header-wrap .article-publication-date {
+  font-size: .9em;
+}
+
+article #article-wrapper {
+  max-width: 660px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+article #article-wrapper > p {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+article #article-wrapper img {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+article .article-cover-image img {
+  max-height: 650px;
+}
+
+/* FOOTER =================================================*/
+footer {
+  text-align: center;
+  padding: 10px 0;
+  font-size: .8em;
+}
+
+/* MEDIA QUERIES ==========================================*/
+
+@media only screen and (min-width: 600px) {
+  /* HEADER */
+  header.masthead button.nav-button {
+    flex: 0 0 65px;
+  }
+
+  header.masthead button#share-button {
+    flex: 0 0 60px;
+    text-align: center;
+  }
+
+  header.masthead button svg {
+    padding-bottom: .3em;
+  }
+
+  header.masthead button span {
+    display: block;
+  }
+
+  header.masthead  h1 {
+    flex: 1 1 70%;
+    font-size: 2em;
+  }
+
+  /* SEARCH */
+  .search h2 {
+    font-size: 6em;
+  }
+
+  .search input {
+    width: 400px;
+  }
+
+  .search button {
+    font-size: 1.1em;
+  }
+
+  /* MAIN */
+  main { /*IF SCREEN IS BIGGER DECREASE SIZE OF MAIN WHEN MENU OPENS */
+    width: auto;
+  }
+
+  /* ARTICLES */
+  article header.article-header {
+    position: relative; /* the whole dive is relative, and just the text div is absolute */
+  }
+
+  .article-header-wrap {
+    position: absolute;
+    bottom: 0; /* related to the bottom of div */
+    max-width: 100%; /* 100% of header box */
+    color: white;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  /* ARTICLES */
+  .article-header {
+    background-color: black;
+  }
+
+  article header.article-header {
+    display: flex;
+    flex-flow: row nowrap;
+    max-height: 650px;
+  }
+
+  article .article-header-wrap {
+    position: inherit;
+    flex: 1 1 50%;
+    background-color: black;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+  article .article-header-wrap h1 {
+    margin-top: 0;
+  }
+
+  article .article-cover-image {
+    flex: 1 1 50%;
+    box-sizing: border-box;
+  }
+}
